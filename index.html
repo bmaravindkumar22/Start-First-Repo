@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Upload your resume and a job description to see your match score, missing terms and what to fix." />
+    <title>Resume checker | Match your resume to a job description</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["Newsreader", "serif"],
+                        body: ['"Atkinson Hyperlegible"', "sans-serif"],
+                    },
+                    colors: {
+                        ink: "#0D0E10",
+                        bone: "#ECEAE4",
+                        pencil: "#8F8C85",
+                        correction: "#FF6B57",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Reads .docx files in the browser. -->
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+    <script type="module" src="app.js"></script>
+</head>
+
+<body class="min-h-screen bg-ink font-body text-bone antialiased">
+    <main class="mx-auto max-w-5xl px-6">
+        <section class="pt-16 pb-12 lg:pt-24">
+            <h1 class="font-display text-5xl font-medium leading-[1.02] tracking-[-0.02em] sm:text-7xl">
+                Read your resume the way the posting's filter reads it.
+            </h1>
+            <p class="mt-8 max-w-[34ch] text-lg leading-relaxed text-pencil">
+                Add your resume and paste a job description. You get a match score, the terms the posting asks for
+                that your resume never shows, and what to fix before you apply.
+            </p>
+        </section>
+
+        <form id="analyze-form" class="grid gap-10 pb-16 lg:grid-cols-2" novalidate>
+            <div>
+                <h2 class="font-display text-2xl font-medium">Your resume</h2>
+                <div id="dropzone"
+                    class="mt-5 flex h-80 flex-col items-center justify-center gap-4 border border-dashed border-white/25 p-8 text-center data-[dragging=true]:border-bone data-[dragging=true]:bg-white/5">
+                    <p class="text-pencil">Drop a PDF or .docx here</p>
+                    <button type="button" id="browse"
+                        class="border-b border-bone pb-0.5 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bone focus-visible:ring-offset-4 focus-visible:ring-offset-ink">
+                        Or choose a file
+                    </button>
+                    <p id="file-label" class="text-sm text-pencil">No file yet</p>
+                    <input id="file-input" type="file" accept=".pdf,.docx" hidden />
+                </div>
+            </div>
+
+            <div>
+                <label for="jd" class="font-display text-2xl font-medium">Job description</label>
+                <textarea id="jd" rows="14" placeholder="Paste the full posting, including the requirements."
+                    class="mt-5 h-80 w-full resize-none border border-white/25 bg-transparent p-4 text-bone placeholder:text-pencil focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bone"></textarea>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-6 text-center lg:col-span-2">
+                <button type="submit" id="submit"
+                    class="bg-bone px-6 py-3 font-bold text-ink disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bone focus-visible:ring-offset-4 focus-visible:ring-offset-ink">
+                    Check my resume
+                </button>
+                <p id="status" class="text-pencil" aria-live="polite"></p>
+                <p id="error" role="alert" class="text-correction"></p>
+            </div>
+        </form>
+
+        <section id="results" tabindex="-1" aria-labelledby="scorecard-title"
+            class="border-t border-white/10 pt-12 pb-24" hidden></section>
+    </main>
+
+    <footer class="mx-auto max-w-5xl border-t border-white/10 px-6 py-8 text-sm text-pencil">
+        Your file is read in this browser. Nothing is uploaded or stored.
+    </footer>
+</body>
+
+</html>

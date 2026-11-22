@@ -1,0 +1,48 @@
+/*
+ * Styles that Tailwind's utility classes do not cover well.
+ * Layout, colour and type stay in the Tailwind classes in index.html.
+ */
+
+html {
+    color-scheme: dark;
+    scroll-padding-top: 2rem;
+}
+
+/* The drop zone's dashed border switches to a solid one while a file is held over it. */
+#dropzone[data-dragging="true"] {
+    border-style: solid;
+}
+
+/* Keyboard focus must be visible on every control. */
+:focus-visible {
+    outline: 2px solid #eceae4;
+    outline-offset: 4px;
+}
+
+/* The scorecard receives focus after it renders so screen readers announce it. */
+#results:focus {
+    outline: none;
+}
+
+/* Missing terms get a wavy underline. Colour is never the only signal, because each
+   term is also named in the list text. */
+.missing-term {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #ff6b57;
+    text-underline-offset: 0.25em;
+}
+
+/* Respect the reader's motion setting: no smooth scrolling, no transitions. */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0ms !important;
+        animation-duration: 0ms !important;
+    }
+}
