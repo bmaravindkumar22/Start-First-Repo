@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        color-scheme: dark;
+        scroll-padding-top: 2rem;
+    }
+
+    body {
+        @apply min-h-screen bg-ink font-body text-bone antialiased;
+    }
+
+    /* Keyboard focus must be visible on every control. */
+    :focus-visible {
+        outline: 2px solid #eceae4;
+        outline-offset: 4px;
+    }
+}
+
+@layer components {
+
+    /* Missing terms get a wavy underline. The term is also named in the list heading,
+       so colour is never the only signal. */
+    .missing-term {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+        text-decoration-color: #ff6b57;
+        text-underline-offset: 0.25em;
+    }
+
+    /* The drop zone's dashed border turns solid while a file is held over it. */
+    .drop-zone[data-dragging="true"] {
+        border-style: solid;
+        background-color: rgb(255 255 255 / 0.05);
+    }
+
+    /* The scorecard takes focus after it renders; the outline would only add noise. */
+    .scorecard:focus {
+        outline: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0ms !important;
+        animation-duration: 0ms !important;
+    }
+}
