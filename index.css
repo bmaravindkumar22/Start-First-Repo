@@ -28,6 +28,9 @@
         text-decoration-style: wavy;
         text-decoration-color: #ff6b57;
         text-underline-offset: 0.25em;
+        /* The correction lines draw in one after another when a report arrives. */
+        animation: correction-in 360ms ease-out both;
+        animation-delay: calc(var(--i, 0) * 90ms);
     }
 
     /* The drop zone's dashed border turns solid while a file is held over it. */
@@ -42,6 +45,16 @@
     }
 }
 
+@keyframes correction-in {
+    from {
+        text-decoration-color: transparent;
+    }
+
+    to {
+        text-decoration-color: #ff6b57;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -52,5 +65,6 @@
     *::after {
         transition-duration: 0ms !important;
         animation-duration: 0ms !important;
+        animation-delay: 0ms !important;
     }
 }

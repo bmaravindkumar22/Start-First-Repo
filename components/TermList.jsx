@@ -8,8 +8,12 @@ export default function TermList({ title, items, emptyText, tone = "found" }) {
                 <p className="mt-3 text-bone">{emptyText}</p>
             ) : (
                 <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-bone">
-                    {items.map((term) => (
-                        <li key={term} className={tone === "missing" ? "missing-term text-correction" : ""}>
+                    {items.map((term, i) => (
+                        <li
+                            key={term}
+                            style={{ "--i": i }}
+                            className={tone === "missing" ? "missing-term text-correction" : "text-sage"}
+                        >
                             {term}
                         </li>
                     ))}

@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./index.html", "./src/**/*.{js,jsx}"],
+    content: [
+        "./index.html",
+        "./*.{js,jsx}",
+        "./components/**/*.{js,jsx}",
+        "./hooks/**/*.{js,jsx}",
+        "./lib/**/*.{js,jsx}",
+    ],
     theme: {
         extend: {
             fontFamily: {
@@ -12,6 +18,7 @@ export default {
                 bone: "#ECEAE4",
                 pencil: "#8F8C85",
                 correction: "#FF6B57",
+                sage: "#8DB89A",
             },
         },
     },

@@ -5,6 +5,7 @@ import Scorecard from "./components/Scorecard.jsx";
 import Footer from "./components/Footer.jsx";
 import useFileUpload from "./hooks/useFileUpload.js";
 import useResumeAnalysis from "./hooks/useResumeAnalysis.js";
+import { sampleReport } from "./lib/sampleReport.js";
 
 // The page is composed here. Each hook owns one job, and the components only render.
 export default function App() {
@@ -27,7 +28,11 @@ export default function App() {
                     onAnalyze={() => analysis.run(upload.file, jobDescription)}
                 />
 
-                {analysis.report && <Scorecard report={analysis.report} />}
+                {analysis.report ? (
+                    <Scorecard report={analysis.report} />
+                ) : (
+                    <Scorecard report={sampleReport} demo />
+                )}
             </main>
 
             <Footer />

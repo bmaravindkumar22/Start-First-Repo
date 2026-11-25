@@ -1,0 +1,10 @@
+# Installed packages. Recreated by `npm install` from package.json.
+node_modules/
+
+# Build output from `vite build` and local logs.
+dist/
+*.log
+
+# Stray copy created by the cancelled `cva resume-analyzer` scaffold.
+# The leading slash limits this to the root folder; components/resume-analyzer is tracked and untouched.
+/resume-analyzer/

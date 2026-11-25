@@ -6,11 +6,13 @@ import NoteList from "./NoteList.jsx";
 import usePrefersReducedMotion from "../hooks/usePrefersReducedMotion.js";
 
 // The full report. It takes focus and scrolls into view each time a new report arrives.
-export default function Scorecard({ report }) {
+export default function Scorecard({ report, demo = false }) {
     const ref = useRef(null);
     const reduceMotion = usePrefersReducedMotion();
 
     useEffect(() => {
+        // The sample on the landing page stays where it is; only a real result takes focus.
+        if (demo) return;
         ref.current?.focus({ preventScroll: true });
         ref.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
     }, [report, reduceMotion]);
@@ -25,6 +27,12 @@ export default function Scorecard({ report }) {
             <h2 id="scorecard-title" className="font-display text-4xl font-medium">
                 Your scorecard
             </h2>
+
+            {demo && (
+                <p className="mt-4 max-w-[60ch] text-pencil">
+                    A sample for a made-up resume. Check yours above to replace it with your own result.
+                </p>
+            )}
 
             <div className="mt-12 grid gap-12 lg:grid-cols-[auto_1fr] lg:gap-20">
                 <ScoreBlock overall={report.overall} message={report.message} stats={report.stats} />
