@@ -1,24 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./index.html",
-        "./*.{js,jsx}",
-        "./components/**/*.{js,jsx}",
-        "./hooks/**/*.{js,jsx}",
-        "./lib/**/*.{js,jsx}",
-    ],
+    // Only top-level and first-level folders are scanned. Recursive globs would also
+    // read components/resume-analyzer/node_modules, which slows the build.
+    content: ["./index.html", "./*.{js,jsx}", "./components/*.{js,jsx}", "./hooks/*.{js,jsx}", "./lib/*.{js,jsx}"],
     theme: {
         extend: {
             fontFamily: {
-                display: ["Newsreader", "serif"],
-                body: ['"Atkinson Hyperlegible"', "sans-serif"],
+                sans: ["Inter", "system-ui", "sans-serif"],
             },
             colors: {
-                ink: "#0D0E10",
-                bone: "#ECEAE4",
-                pencil: "#8F8C85",
-                correction: "#FF6B57",
-                sage: "#8DB89A",
+                canvas: "rgb(var(--canvas) / <alpha-value>)",
+                surface: "rgb(var(--surface) / <alpha-value>)",
+                primary: "rgb(var(--primary) / <alpha-value>)",
+                muted: "rgb(var(--muted) / <alpha-value>)",
+                accent: "rgb(var(--accent) / <alpha-value>)",
+                "on-accent": "rgb(var(--on-accent) / <alpha-value>)",
+                line: "rgb(var(--line) / <alpha-value>)",
+                danger: "rgb(var(--danger) / <alpha-value>)",
             },
         },
     },

@@ -28,6 +28,12 @@ export default function useFileUpload() {
         setFile(candidate);
     }, []);
 
+    // Clears the chosen file, so the upload card returns to its empty state.
+    const removeFile = useCallback(() => {
+        setFile(null);
+        setError("");
+    }, []);
+
     const dropHandlers = {
         onDragEnter(event) {
             event.preventDefault();
@@ -53,5 +59,5 @@ export default function useFileUpload() {
         },
     };
 
-    return { file, error, isDragging, selectFile, dropHandlers };
+    return { file, error, isDragging, selectFile, removeFile, dropHandlers };
 }

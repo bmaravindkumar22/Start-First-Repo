@@ -29,7 +29,7 @@ export default function useResumeAnalysis() {
 
             setStatus("Comparing it with the posting…");
             setReport(analyze(text, jobDescription));
-            setStatus("Your scorecard is below.");
+            setStatus("Your results are below.");
         } catch (caught) {
             setReport(null);
             setStatus("");
